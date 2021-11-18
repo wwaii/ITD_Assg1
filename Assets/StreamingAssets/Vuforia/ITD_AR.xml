@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="visual_3" size="5.000000 3.391778" />
+    <ImageTarget name="visual_2" size="0.500000 0.262500" />
+    <ImageTarget name="visual_1" size="0.500000 0.374603" />
+    <ImageTarget name="cookies" size="0.200000 0.433164" />
+    <ImageTarget name="yuru_2" size="0.200000 0.355556" />
+    <ImageTarget name="yuru_1" size="0.200000 0.355556" />
+  </Tracking>
+</QCARConfig>
