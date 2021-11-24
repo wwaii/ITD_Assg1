@@ -54,5 +54,11 @@ public class square : MonoBehaviour
                     break;
             }
         }
+
+        if (locked && circle.locked && diamond.locked)
+        {
+            GameManager.isGame1 = true;
+            GameManager.CheckGame1();
+        }
     }
 }

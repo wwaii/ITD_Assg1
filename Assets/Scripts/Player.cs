@@ -74,6 +74,7 @@ public class Player : MonoBehaviour
                 Time.timeScale = 0;
                 winText.SetActive(true);
                 endGameButton.SetActive(true);
+                GameManager.isGame3 = true;
             }
         }
         else if (collision.gameObject.tag == "Virus")

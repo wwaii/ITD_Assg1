@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TouchTracker : MonoBehaviour
 {
@@ -9,14 +10,12 @@ public class TouchTracker : MonoBehaviour
     public Vector3 preMouse;
 
     public Text debugText;
-    public Text preText;
 
     public int clickCount = 0;
 
-    public GameObject astronaut;
-    public GameObject drone;
-    public GameObject oxygenTank;
-    public GameObject astronautButton;
+    public GameObject virus1;
+    public GameObject virus2;
+    public GameObject virus3;
 
     public float angleX;
     public float angleY;
@@ -46,9 +45,9 @@ public class TouchTracker : MonoBehaviour
                 //info.collider.name is name of object that the Ray hits
                 debugText.text = "First touch is at: " + Input.mousePosition + ". And it hit: " + info.collider.name;
                 
-                if (info.collider.name == "Astronaut")
+                if (info.collider.name == "Virus1")
                 {
-                    astronautButton.SetActive(true);
+                    SceneManager.LoadScene("game1");
                     /*angleZ = astronaut.transform.eulerAngles.z;*/
                     /*angleX = astronaut.transform.eulerAngles.x;*/
                     /*angleY = astronaut.transform.eulerAngles.y;*/
@@ -56,27 +55,25 @@ public class TouchTracker : MonoBehaviour
                     /*angleY += 90;*/
                     /*astronaut.transform.eulerAngles = new Vector3(angleX, angleY, angleZ);*/
                 }
-                else
-                {
-                    astronautButton.SetActive(false);
-                }
 
-                if (info.collider.name == "Drone")
+                if (info.collider.name == "Virus2")
                 {
+                    SceneManager.LoadScene("game2");
                     /*angleZ = drone.transform.eulerAngles.z;*/
                     /*angleX = drone.transform.eulerAngles.x;*/
                     /*angleY = drone.transform.eulerAngles.y;*/
-/**/
+                    /**/
                     /*angleY += 90;*/
                     /*astronaut.transform.eulerAngles = new Vector3(angleX, angleY, angleZ);*/
                 }
 
-                if (info.collider.name == "OxygenTank")
+                if (info.collider.name == "Virus3")
                 {
+                    SceneManager.LoadScene("GetVacine");
                     /*angleZ = oxygenTank.transform.eulerAngles.z;*/
                     /*angleX = oxygenTank.transform.eulerAngles.x;*/
                     /*angleY = oxygenTank.transform.eulerAngles.y;*/
-/**/
+                    /**/
                     /*angleY += 90;*/
                     /*astronaut.transform.eulerAngles = new Vector3(angleX, angleY, angleZ);*/
                 }
