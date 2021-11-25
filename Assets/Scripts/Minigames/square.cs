@@ -10,6 +10,8 @@ public class square : MonoBehaviour
 
     private float dX, dY;
 
+    public GameObject afterGame;
+
     public static bool locked;
 
     // Start is called before the first frame update
@@ -58,7 +60,7 @@ public class square : MonoBehaviour
         if (locked && circle.locked && diamond.locked)
         {
             GameManager.isGame1 = true;
-            GameManager.CheckGame1();
+            afterGame.SetActive(true);
         }
     }
 }

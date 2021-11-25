@@ -5,10 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
-    private int nextSceneToLoad;
-    public void nextScene()
+    public void loadScene(string sceneName)
     {
-        nextSceneToLoad = SceneManager.GetActiveScene().buildIndex + 1;
-        SceneManager.LoadScene(nextSceneToLoad);
+        SceneManager.LoadScene(sceneName);
     }
 }

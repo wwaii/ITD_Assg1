@@ -10,13 +10,17 @@ public class Player : MonoBehaviour
     public float rotateAmount;
     float rot;
     int score;
-    public GameObject winText;
-    public GameObject endGameButton;
+    public GameObject endGame;
     private Touch firstTouch;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();    
+    }
+
+    private void Start()
+    {
+        PauseGame();
     }
 
     // Update is called once per frame
@@ -72,8 +76,7 @@ public class Player : MonoBehaviour
             if (score >= 5)
             {
                 Time.timeScale = 0;
-                winText.SetActive(true);
-                endGameButton.SetActive(true);
+                endGame.SetActive(true);
                 GameManager.isGame3 = true;
             }
         }
@@ -85,6 +88,18 @@ public class Player : MonoBehaviour
 
     public void EndGame()
     {
-        SceneManager.LoadScene("");
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Image Target");
     }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void ResumeGame()
+    {
+        Time.timeScale = 1;
+    }
+
 }

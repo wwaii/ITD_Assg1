@@ -14,12 +14,15 @@ public class ObjectChanger : MonoBehaviour
 
     public int currentMidAirObj;
 
+    public GameObject button;
+
     private void Awake()
     {
         // If no game is cleared, spawner will not be active
         if (!GameManager.isGame1 && !GameManager.isGame2 && !GameManager.isGame3)
         {
             midAirPositioner.SetActive(false);
+            button.SetActive(false);
         }
 
         currentMidAirObj = 1;

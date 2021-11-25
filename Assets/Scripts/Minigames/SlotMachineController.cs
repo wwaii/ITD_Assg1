@@ -12,21 +12,16 @@ public class SlotMachineController : MonoBehaviour
 
     public Transform handle;
 
-    public string prizeValue;
+    public bool resultsChecked = false;
 
-    public Text winText;
+    public bool gameClear = false;
 
-    private bool resultsChecked = false;
-
-    private bool doAgain = false;
-
-    private bool gameClear;
+    public GameObject afterGame;
 
     private void Update()
     {
         if (!rows[0].rowStopped || !rows[1].rowStopped || !rows[2].rowStopped)
         {
-            prizeValue = "";
             resultsChecked = false;
         }
 
@@ -35,17 +30,16 @@ public class SlotMachineController : MonoBehaviour
             CheckResults();
         }
 
-        winText.text = prizeValue;
-
         if (gameClear)
         {
-            GameManager.isGame2 = true;
-            GameManager.CheckGame2();
+            //GameManager.isGame2 = true;
+            afterGame.SetActive(true);
         }
     }
 
     private void OnMouseDown()
     {
+        Debug.Log("test");
         if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped)
             StartCoroutine("PullHandle");
     }
@@ -72,37 +66,30 @@ public class SlotMachineController : MonoBehaviour
         // If JackPod, Game is cleared
         if (rows[0].stoppedSlot == "Diamond" && rows[1].stoppedSlot == "Diamond" && rows[2].stoppedSlot == "Diamond")
         {
-            prizeValue = "Game Clear";
             gameClear = true;
         }
         else if (rows[0].stoppedSlot == "Crown" && rows[1].stoppedSlot == "Crown" && rows[2].stoppedSlot == "Crown")
         {
-            prizeValue = "Game Clear";
             gameClear = true;
         }
         else if (rows[0].stoppedSlot == "Melon" && rows[1].stoppedSlot == "Melon" && rows[2].stoppedSlot == "Melon")
         {
-            prizeValue = "Game Clear";
             gameClear = true;
         }
         else if (rows[0].stoppedSlot == "Bar" && rows[1].stoppedSlot == "Bar" && rows[2].stoppedSlot == "Bar")
         {
-            prizeValue = "Game Clear";
             gameClear = true;
         }
         else if (rows[0].stoppedSlot == "Seven" && rows[1].stoppedSlot == "Seven" && rows[2].stoppedSlot == "Seven")
         {
-            prizeValue = "Game Clear";
             gameClear = true;
         }
         else if (rows[0].stoppedSlot == "Cherry" && rows[1].stoppedSlot == "Cherry" && rows[2].stoppedSlot == "Cherry")
         {
-            prizeValue = "Game Clear";
             gameClear = true;
         }
         else if (rows[0].stoppedSlot == "Lemon" && rows[1].stoppedSlot == "Lemon" && rows[2].stoppedSlot == "Lemon")
         {
-            prizeValue = "Game Clear";
             gameClear = true;
         }
 
