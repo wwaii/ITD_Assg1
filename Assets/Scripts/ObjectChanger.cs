@@ -12,20 +12,21 @@ public class ObjectChanger : MonoBehaviour
     [SerializeField]
     public List<AnchorBehaviour> midAirObjList;
 
-    public int currentMidAirObj;
+    public int MidAirObj;
 
-    public GameObject button;
+    public GameObject objectChanger;
+
+    public GameObject noGameText;
 
     private void Awake()
     {
-        // If no game is cleared, spawner will not be active
-        if (!GameManager.isGame1 && !GameManager.isGame2 && !GameManager.isGame3)
-        {
-            midAirPositioner.SetActive(false);
-            button.SetActive(false);
-        }
+        CheckGame();
+        MidAirObj = 0;
+    }
 
-        currentMidAirObj = 1;
+    private void Update()
+    {
+        CheckObject();
     }
 
     public void ChangeObject()
@@ -33,46 +34,66 @@ public class ObjectChanger : MonoBehaviour
         //Counting the number of objects in both list
         int j = midAirObjList.Count - 1;
 
+        //Calling the CheckObject() Function
+        CheckObject();
 
+        //Resetting the value of MidAirObj to prevent error
+        if (MidAirObj == j)
+        {
+            MidAirObj = 0;
+        }
+        else
+        {
+            MidAirObj += 1;
+        }
+
+    }
+
+    public void CheckGame()
+    {
+        //If no game is cleared, the spawner will be turned off
+        if (!GameManager.isGame1 && !GameManager.isGame2 && !GameManager.isGame3)
+        {
+            //Turning off the Spawner and Change Object button
+            midAirPositioner.SetActive(false);
+            objectChanger.SetActive(false);
+            noGameText.SetActive(true);
+        }
+        else
+        {
+            noGameText.SetActive(false);
+            objectChanger.SetActive(true);
+        }
+    }
+
+    public void CheckObject()
+    {
         //This code here should exclude any models that it's game haven't been cleared
         if (!GameManager.isGame1)
         {
-            if (currentMidAirObj == 0)
+            if (MidAirObj == 0)
             {
-                currentMidAirObj += 1;
+                MidAirObj += 1;
             }
         }
 
         if (!GameManager.isGame2)
         {
-            if (currentMidAirObj == 1)
+            if (MidAirObj == 1)
             {
-                currentMidAirObj += 1;
+                MidAirObj += 1;
             }
         }
 
         if (!GameManager.isGame3)
         {
-            if (currentMidAirObj == 2)
+            if (MidAirObj == 2)
             {
-                currentMidAirObj = 0;
+                MidAirObj = 0;
             }
         }
 
         //Changing the current object to the next object in the list
-        midAirPositioner.GetComponent<ContentPositioningBehaviour>().AnchorStage = midAirObjList[currentMidAirObj];
-
-        /*Debug.Log(planeFinder.GetComponent<ContentPositioningBehaviour>().AnchorStage);*/
-        /*Debug.Log(midAirPositioner.GetComponent<ContentPositioningBehaviour>().AnchorStage);*/
-
-        if (currentMidAirObj == j)
-        {
-            currentMidAirObj = 0;
-        }
-        else
-        {
-            currentMidAirObj += 1;
-        }
-
+        midAirPositioner.GetComponent<ContentPositioningBehaviour>().AnchorStage = midAirObjList[MidAirObj];
     }
 }

@@ -20,40 +20,57 @@ public class SlotMachineController : MonoBehaviour
 
     private void Update()
     {
+        //If the roll has stopped and results has already been checked
         if (!rows[0].rowStopped || !rows[1].rowStopped || !rows[2].rowStopped)
         {
+            //Resetting resultsChecked
             resultsChecked = false;
         }
 
+        //If the roll has stopped and the results still have not been checked
         if (!rows[0].rowStopped && !rows[1].rowStopped && !rows[2].rowStopped && !resultsChecked)
         {
+            //Calling CheckResults function
             CheckResults();
         }
 
+        //Checking if the game is cleared
         if (gameClear)
         {
-            //GameManager.isGame2 = true;
+            //If the game has been cleared
+
+            //Game 2 is cleared
+            GameManager.isGame2 = true;
+
+            //Activate the Game Clear Menu
             afterGame.SetActive(true);
         }
     }
 
+    //If there is a mouse click
     private void OnMouseDown()
     {
-        Debug.Log("test");
+        //If the roll has stopped
         if (rows[0].rowStopped && rows[1].rowStopped && rows[2].rowStopped)
+        {
+            //Start "PullHandle"
             StartCoroutine("PullHandle");
+        }
     }
 
     private IEnumerator PullHandle()
     {
+        //Rotating the handle away
         for (int i = 0; i < 15; i += 5)
         {
             handle.Rotate(0f, 0f, i);
             yield return new WaitForSeconds(0.1f);
         }
 
+        //Handle is pulled
         HandlePulled();
 
+        //Rotating the handle back
         for (int i = 0; i < 15; i += 5)
         {
             handle.Rotate(0f, 0f, -i);
@@ -63,7 +80,7 @@ public class SlotMachineController : MonoBehaviour
 
     private void CheckResults()
     {
-        // If JackPod, Game is cleared
+        //If JackPod, game 3 is cleared
         if (rows[0].stoppedSlot == "Diamond" && rows[1].stoppedSlot == "Diamond" && rows[2].stoppedSlot == "Diamond")
         {
             gameClear = true;
@@ -93,6 +110,7 @@ public class SlotMachineController : MonoBehaviour
             gameClear = true;
         }
 
+        //Results has been checked
         resultsChecked = true;
     }
 }

@@ -23,11 +23,14 @@ public class square : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Checking if there is a touch input and the object is not in place
         if (Input.touchCount > 0 && !locked)
         {
+            //If there is a touch input and the object is not in place, then assign the following variables
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
 
+            //Moving the objects using touch
             switch (touch.phase)
             {
                 case TouchPhase.Began:
@@ -59,7 +62,10 @@ public class square : MonoBehaviour
 
         if (locked && circle.locked && diamond.locked)
         {
+            //Game 2 is cleared
             GameManager.isGame1 = true;
+
+            //Activate the Game Clear Menu
             afterGame.SetActive(true);
         }
     }
